@@ -1,35 +1,29 @@
 package md.fin.homefinance.model;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name ="Person")
-public class Person {
+@Table(name ="categories")
+public class Category {
 
     @Id
     @Column(name = "id")
-    private int id;
-
+    int id;
     @Column(name = "name")
-    private String name;
+    String name;
+    @Column(name = "description")
+    String description;
 
-    @Column(name = "age")
-    private int age;
-
-
-    public Person() {
+    public Category() {
     }
 
-    public Person(int id, String name, int age, String lastName, String firstName) {
+    public Category(int id, String name, String description) {
         this.id = id;
         this.name = name;
-        this.age = age;
-
+        this.description = description;
     }
 
     public int getId() {
@@ -48,12 +42,11 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
-

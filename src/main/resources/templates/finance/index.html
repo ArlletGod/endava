@@ -20,7 +20,7 @@
 
 <div class ="center" ></div>
 <a href="/finance/newproduct">Add new product</a>
-<table class="tb" style="width:800px;">
+<table class="tb" style="width:1000px;">
     <tr>
         <th>ID</th>
         <th>Product</th>
@@ -39,6 +39,8 @@
             <div th:text="${item.getCategory()}">VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
             <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a></div></td>
+
+
     </tr>
 
 </table>

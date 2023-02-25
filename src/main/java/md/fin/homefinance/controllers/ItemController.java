@@ -2,7 +2,6 @@ package md.fin.homefinance.controllers;
 
 import jakarta.validation.Valid;
 import md.fin.homefinance.model.Item;
-import md.fin.homefinance.model.Person;
 import md.fin.homefinance.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

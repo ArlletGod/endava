@@ -1,7 +1,6 @@
 package md.fin.homefinance.services;
 
 import md.fin.homefinance.model.Item;
-import md.fin.homefinance.model.Person;
 import md.fin.homefinance.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
