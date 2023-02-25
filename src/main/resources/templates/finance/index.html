@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finance</title>
+</head>
+<body>
+<style>
+    .tb { border-collapse: collapse;
+          margin-left: auto;
+          margin-right: auto;
+    }
+    .tb th, .tb td { padding: 5px; border: solid 1px #777; }
+    .tb th { background-color: lightblue;
+        margin-left: auto;
+        margin-right: auto;}
+    .center { margin-left: auto;
+        margin-right: auto;}
+</style>
+
+<div class ="center" ></div>
+<a href="/finance/newproduct">Add new product</a>
+<table class="tb" style="width:800px;">
+    <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Cost</th>
+        <th>Category</th>
+        <th>Edit/Delete</th>
+    </tr>
+    <tr>
+        <td><div th:each ="item: ${items}">
+            <div th:text="${item.getId()}">VALUE</div></div></td>
+        <td><div th:each ="item: ${items}">
+            <a th:href="@{/finance/{id}(id=${item.getId()})}" th:text="${item.getName()}">Username</a></td>
+        <td><div th:each ="item: ${items}">
+            <div th:text="${item.getCost()}">VALUE</div></div></td>
+        <td><div th:each ="item: ${items}">
+            <div th:text="${item.getCategory()}">VALUE</div></div></td>
+        <td><div th:each ="item: ${items}">
+            <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a></div></td>
+    </tr>
+
+</table>
+
+</div>
+</body>
+</html>

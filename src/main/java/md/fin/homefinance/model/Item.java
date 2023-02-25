@@ -6,30 +6,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name ="Person")
-public class Person {
-
+@Table(name ="item")
+public class Item {
     @Id
     @Column(name = "id")
     private int id;
-
     @Column(name = "name")
     private String name;
+    @Column(name = "cost")
+    private int cost;
+    @Column(name = "category")
+    private String category;
 
-    @Column(name = "age")
-    private int age;
-
-
-    public Person() {
+    public Item() {
     }
 
-    public Person(int id, String name, int age, String lastName, String firstName) {
+    public Item(int id, String name, int cost, String category) {
         this.id = id;
         this.name = name;
-        this.age = age;
-
+        this.cost = cost;
+        this.category = category;
     }
 
     public int getId() {
@@ -48,12 +45,19 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getCost() {
+        return cost;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
-
