@@ -5,9 +5,11 @@
     <title>Show</title>
 </head>
 <body>
-<p th:text="${item.getName() + ', ' + item.getCost()+' lei'}">VALUE</p>
-<p th:text="${'Category : ' + item.getCategory()}">VALUE</p>
 <p th:text="${item.getId()}">VALUE</p>
+<p th:text="${item.getName() + ', ' + item.getCost()+' lei'}">VALUE</p>
+<p th:text="${item.getOwner()}">VALUE</p>
+
+
 
 <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a>
 

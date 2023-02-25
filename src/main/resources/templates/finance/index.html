@@ -18,11 +18,12 @@
         margin-right: auto;}
 </style>
 
-<div class ="center" ></div>
-<a href="/finance/newproduct">Add new product</a>
+<div class ="center" >
+<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add new category</a></div>
 <table class="tb" style="width:1000px;">
     <tr>
         <th>ID</th>
+        <th>Date</th>
         <th>Product</th>
         <th>Cost</th>
         <th>Category</th>
@@ -32,11 +33,13 @@
         <td><div th:each ="item: ${items}">
             <div th:text="${item.getId()}">VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
+            <div th:text="${#dates.format(item.getCreatedAt(), 'dd/MM/yy')}" >VALUE</div></div></td>
+        <td><div th:each ="item: ${items}">
             <a th:href="@{/finance/{id}(id=${item.getId()})}" th:text="${item.getName()}">Username</a></td>
         <td><div th:each ="item: ${items}">
-            <div th:text="${item.getCost()}">VALUE</div></div></td>
+            <div th:text="${item.getCost()} + ' lei'">VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
-            <div th:text="${item.getCategory()}">VALUE</div></div></td>
+            <div th:text="${item.getOwner()}">VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
             <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a></div></td>
 

@@ -1,32 +1,60 @@
 package md.fin.homefinance.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name ="item")
 public class Item {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "cost")
     private int cost;
-    @Column(name = "category")
-    private String category;
+    @ManyToOne
+    @JoinColumn(name="category_id",referencedColumnName = "id")
+    private Category owner;
+
+    @Column(name="create_at")
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
+
+
+
+
 
     public Item() {
     }
 
-    public Item(int id, String name, int cost, String category) {
+    public Item(int id, String name, int cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
-        this.category = category;
+
+    }
+
+    public Category getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Category owner) {
+        this.owner = owner;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getId() {
@@ -53,11 +81,5 @@ public class Item {
         this.cost = cost;
     }
 
-    public String getCategory() {
-        return category;
-    }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }

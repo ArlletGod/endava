@@ -1,9 +1,9 @@
 package md.fin.homefinance.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+
+import java.util.List;
 
 @Entity
 @Table(name ="categories")
@@ -11,11 +11,15 @@ public class Category {
 
     @Id
     @Column(name = "id")
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(name = "name")
-    String name;
+    private String name;
     @Column(name = "description")
-    String description;
+    private String description;
+
+@OneToMany(mappedBy = "owner")
+private List<Item> items;
 
     public Category() {
     }
@@ -24,6 +28,14 @@ public class Category {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public int getId() {
@@ -49,4 +61,10 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
+
