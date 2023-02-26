@@ -18,13 +18,14 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Autowired
-      public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
+
     public Category findOne(int id) {
         Optional<Category> foundItem = categoryRepository.findById(id);
         return foundItem.orElse(null);

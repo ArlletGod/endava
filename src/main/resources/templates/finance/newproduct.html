@@ -5,10 +5,17 @@
     <title>Add new product</title>
 </head>
 <body>
+<div class="center">
+    <a href="/finance">Home</a> |<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add
+    new category</a></div>
+
 
 <form th:method="POST" th:action="@{/finance}" th:object="${item}">
 
-
+    <label for="ownClient">Enter Company name: </label>
+    <input type="text" th:field="*{ownClient}" id="ownClient"/>
+    <div style="color:red" th:if="${#fields.hasErrors('ownClient')}" th:errors="*{ownClient}">ownClient Error</div>
+    <br/>
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
@@ -17,9 +24,15 @@
     <input type="text" th:field="*{cost}" id="cost"/>
     <div style="color:red" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}">Cost Error</div>
     <br/>
-    <label for="owner">Enter category: </label>
+    <label for="quantity">Enter Quantity: </label>
+    <input type="text" th:field="*{quantity}" id="quantity"/>
+    <div style="color:red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">quantity Error</div>
+    <br/>
+    <label for="cost">Enter category: </label>
     <input type="text" th:field="*{owner}" id="owner"/>
-    <div style="color:red" th:if="${#fields.hasErrors('owner')}" th:errors="*{owner}">owner Error</div>
+
+
+    </select>
     <br/>
     <input type="submit" value="Create!"/>
 </form>

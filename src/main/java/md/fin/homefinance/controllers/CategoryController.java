@@ -18,17 +18,19 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController {
 
-private final CategoryService categoryService;
+    private final CategoryService categoryService;
 
-@Autowired
+    @Autowired
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
+
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("categories", categoryService.findAll());
         return "category/index";
     }
+
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("category", categoryService.findOne(id));

@@ -30,6 +30,7 @@
         <th>Edit/Delete</th>
     </tr>
     <tr>
+
         <td><div th:each ="item: ${items}">
             <div th:text="${item.getId()}" >VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
@@ -42,7 +43,6 @@
             <div th:text="${item.getOwner()}">VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
             <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a></div></td>
-
 
 
 

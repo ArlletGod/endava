@@ -6,7 +6,7 @@ import org.hibernate.annotations.Cascade;
 import java.util.List;
 
 @Entity
-@Table(name ="categories")
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -18,8 +18,8 @@ public class Category {
     @Column(name = "description")
     private String description;
 
-@OneToMany(mappedBy = "owner")
-private List<Item> items;
+    @OneToMany(mappedBy = "owner")
+    private List<Item> items;
 
     public Category() {
     }

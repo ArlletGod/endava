@@ -6,19 +6,31 @@
 </head>
 <body>
 <style>
-    .tb { border-collapse: collapse;
-          margin-left: auto;
-          margin-right: auto;
-    }
-    .tb th, .tb td { padding: 5px; border: solid 1px #777; }
-    .tb th { background-color: lightblue;
+    .tb {
+        border-collapse: collapse;
         margin-left: auto;
-        margin-right: auto;}
-    .center { margin-left: auto;
-        margin-right: auto;}
-</style>
+        margin-right: auto;
+    }
 
-<div class ="center" ><a href="/categories/newcategory">Add new category</a></div>
+    .tb th, .tb td {
+        padding: 5px;
+        border: solid 1px #777;
+    }
+
+    .tb th {
+        background-color: lightblue;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<div class="center">
+    <a href="/finance">Home</a> |<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add
+    new category</a></div>
 
 <table class="tb" style="width:1000px;">
     <tr>
@@ -29,15 +41,28 @@
         <th>Edit/Delete</th>
     </tr>
     <tr>
-        <td><div th:each ="category: ${categories}">
-            <div th:text="${category.getId()}">VALUE</div></div></td>
-        <td><div th:each ="category: ${categories}">
-            <div th:text="${category.getName()}">VALUE</div></div></td></td>
-        <td><div th:each ="category: ${categories}">
-            <div th:text="${category.getDescription()}">VALUE</div></div></td></td>
+        <td>
+            <div th:each="category: ${categories}">
+                <div th:text="${category.getId()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="category: ${categories}">
+                <div th:text="${category.getName()}">VALUE</div>
+            </div>
+        </td>
+        </td>
+        <td>
+            <div th:each="category: ${categories}">
+                <div th:text="${category.getDescription()}">VALUE</div>
+            </div>
+        </td>
+        </td>
 
-        <td><div th:each ="category: ${categories}">
-            <a th:href="@{/categories/{id}/edit(id=${category.getId()})}">Edit</a></div></td>
+        <td>
+            <div th:each="category: ${categories}">
+                <a th:href="@{/categories/{id}/edit(id=${category.getId()})}">Edit</a></div>
+        </td>
 
     </tr>
 

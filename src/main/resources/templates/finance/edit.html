@@ -5,6 +5,9 @@
     <title>Update item</title>
 </head>
 <body>
+<div class="center">
+    <a href="/finance">Home</a> |<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add
+    new category</a></div>
 
 <form th:method="PATCH" th:action="@{/finance/{id}(id=${item.getId()})}" th:object="${item}">
     <label for="name">Enter name: </label>

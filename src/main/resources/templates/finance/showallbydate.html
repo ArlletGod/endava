@@ -6,20 +6,32 @@
 </head>
 <body>
 <style>
-    .tb { border-collapse: collapse;
-          margin-left: auto;
-          margin-right: auto;
-    }
-    .tb th, .tb td { padding: 5px; border: solid 1px #777; }
-    .tb th { background-color: lightblue;
+    .tb {
+        border-collapse: collapse;
         margin-left: auto;
-        margin-right: auto;}
-    .center { margin-left: auto;
-        margin-right: auto;}
+        margin-right: auto;
+    }
+
+    .tb th, .tb td {
+        padding: 5px;
+        border: solid 1px #777;
+    }
+
+    .tb th {
+        background-color: lightblue;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>
 
-<div class ="center" >
-<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add new category</a></div>
+<div class="center">
+    <a href="/finance">Home</a> |<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add
+    new category</a></div>
 <table class="tb" style="width:1000px;">
     <tr>
         <th>ID</th>
@@ -30,19 +42,35 @@
         <th>Edit/Delete</th>
     </tr>
     <tr>
-        <td><div th:each ="item: ${items}">
-            <div th:text="${item.getId()}" >VALUE</div></div></td>
-        <td><div th:each ="item: ${items}">
-            <div th:text="${item.getDate()}" >VALUE</div></div></td>
-        <td><div th:each ="item: ${items}">
-            <div th:text="${item.getName()}" >VALUE</div></div></td>
-        <td><div th:each ="item: ${items}">
-            <div th:text="${item.getCost()}" >VALUE</div></div></td>
-        <td><div th:each ="item: ${items}">
-            <div th:text="${item.getOwner()}">VALUE</div></div></td>
-
-
-
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getId()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getDate()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getName()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getCost()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getOwner()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a></div>
+        </td>
 
 
     </tr>

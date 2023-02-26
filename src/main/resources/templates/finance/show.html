@@ -5,10 +5,14 @@
     <title>Show</title>
 </head>
 <body>
+
+<div class="center">
+    <a href="/finance">Home</a> |<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add
+    new category</a></div>
+
 <p th:text="${item.getId()}">VALUE</p>
 <p th:text="${item.getName() + ', ' + item.getCost()+' lei'}">VALUE</p>
 <p th:text="${item.getOwner()}">VALUE</p>
-
 
 
 <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a>

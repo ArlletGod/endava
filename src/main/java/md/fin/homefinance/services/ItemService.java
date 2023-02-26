@@ -1,10 +1,10 @@
 package md.fin.homefinance.services;
 
-import md.fin.homefinance.DTO.ItemDTO;
+import md.fin.homefinance.model.Category;
+import md.fin.homefinance.model.Client;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +19,7 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-@Autowired
+    @Autowired
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
@@ -27,9 +27,6 @@ public class ItemService {
     public List<Item> findAll() {
         return itemRepository.findAll();
     }
-
-
-
 
 
     public Item findOne(int id) {
@@ -41,10 +38,14 @@ public class ItemService {
         return itemRepository.findByDate(date);
     }
 
+    public List<Item> getItemsByOwner(Category category) {
+        return itemRepository.findByOwner(category);
+    }
+
 
     @Transactional
     public void save(Item item) {
-    item.setDate(new Date());
+        item.setDate(new Date());
         itemRepository.save(item);
     }
 
@@ -58,4 +59,7 @@ public class ItemService {
     public void delete(int id) {
         itemRepository.deleteById(id);
     }
+
+
+
 }

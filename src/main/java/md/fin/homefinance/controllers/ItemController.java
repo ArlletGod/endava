@@ -1,6 +1,7 @@
 package md.fin.homefinance.controllers;
 
 import jakarta.validation.Valid;
+import md.fin.homefinance.model.Category;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.List;
 public class ItemController {
     private final ItemService itemService;
 
-@Autowired
+    @Autowired
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
@@ -32,10 +33,17 @@ public class ItemController {
     }
 
     @GetMapping("/date/{date}")
-    public String  getItemsByDate(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,Model model) {
+    public String getItemsByDate(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date, Model model) {
         model.addAttribute("items", itemService.getItemsByDate(date));
 
         return "finance/showallbydate";
+    }
+
+    @GetMapping("/category/{owner}")
+    public String getItemsByOwner(@PathVariable("owner") Category category, Model model) {
+        model.addAttribute("items", itemService.getItemsByOwner(category));
+
+        return "finance/showallbycategory";
     }
 
     @GetMapping("/{id}")
@@ -43,8 +51,6 @@ public class ItemController {
         model.addAttribute("item", itemService.findOne(id));
         return "finance/show";
     }
-
-
 
     @GetMapping("/newproduct")
     public String newItem(@ModelAttribute("item") Item item) {
@@ -79,6 +85,12 @@ public class ItemController {
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
+        itemService.delete(id);
+        return "redirect:/finance";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteItem(@PathVariable("id") int id) {
         itemService.delete(id);
         return "redirect:/finance";
     }
