@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finance</title>
+</head>
+<body>
+<style>
+    .tb { border-collapse: collapse;
+          margin-left: auto;
+          margin-right: auto;
+    }
+    .tb th, .tb td { padding: 5px; border: solid 1px #777; }
+    .tb th { background-color: lightblue;
+        margin-left: auto;
+        margin-right: auto;}
+    .center { margin-left: auto;
+        margin-right: auto;}
+</style>
+
+<div class ="center" ><a href="/categories/newcategory">Add new category</a></div>
+
+<table class="tb" style="width:1000px;">
+    <tr>
+        <th>ID</th>
+        <th>Category name</th>
+        <th>Description</th>
+        <th>Items</th>
+        <th>Edit/Delete</th>
+    </tr>
+    <tr>
+        <td><div th:each ="category: ${categories}">
+            <div th:text="${category.getId()}">VALUE</div></div></td>
+        <td><div th:each ="category: ${categories}">
+            <div th:text="${category.getName()}">VALUE</div></div></td></td>
+        <td><div th:each ="category: ${categories}">
+            <div th:text="${category.getDescription()}">VALUE</div></div></td></td>
+
+        <td><div th:each ="category: ${categories}">
+            <a th:href="@{/categories/{id}/edit(id=${category.getId()})}">Edit</a></div></td>
+
+    </tr>
+
+</table>
+
+</div>
+</body>
+</html>
