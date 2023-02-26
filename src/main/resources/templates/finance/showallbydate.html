@@ -31,17 +31,18 @@
     </tr>
     <tr>
         <td><div th:each ="item: ${items}">
-            <div th:text="${item.getId()}">VALUE</div></div></td>
+            <div th:text="${item.getId()}" >VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
             <div th:text="${item.getDate()}" >VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
-            <a th:href="@{/finance/{id}(id=${item.getId()})}" th:text="${item.getName()}">Username</a></td>
+            <div th:text="${item.getName()}" >VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
-            <div th:text="${item.getCost()} + ' lei'">VALUE</div></div></td>
+            <div th:text="${item.getCost()}" >VALUE</div></div></td>
         <td><div th:each ="item: ${items}">
             <div th:text="${item.getOwner()}">VALUE</div></div></td>
-        <td><div th:each ="item: ${items}">
-            <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a></div></td>
+
+
+
 
 
     </tr>

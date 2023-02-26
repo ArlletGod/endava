@@ -6,10 +6,13 @@ import md.fin.homefinance.model.Category;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/categories")
@@ -46,6 +49,7 @@ private final CategoryService categoryService;
         categoryService.save(category);
         return "redirect:/categories";
     }
+
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {

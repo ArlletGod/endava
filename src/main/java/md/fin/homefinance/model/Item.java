@@ -2,11 +2,10 @@ package md.fin.homefinance.model;
 
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.util.Date;
-import java.util.List;
+
 
 @Entity
 @Table(name ="item")
@@ -20,25 +19,23 @@ public class Item {
     @Column(name = "cost")
     private int cost;
     @ManyToOne
-    @JoinColumn(name="category_id",referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category owner;
 
-    @Column(name="create_at")
+
+    @Column(name = "date")
     @Temporal(TemporalType.DATE)
-    private Date createdAt;
-
-
-
+    private Date date;
 
 
     public Item() {
     }
 
+
     public Item(int id, String name, int cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
-
     }
 
     public Category getOwner() {
@@ -49,12 +46,12 @@ public class Item {
         this.owner = owner;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getId() {
@@ -80,6 +77,7 @@ public class Item {
     public void setCost(int cost) {
         this.cost = cost;
     }
-
-
 }
+
+
+

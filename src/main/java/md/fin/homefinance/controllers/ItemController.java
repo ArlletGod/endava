@@ -4,10 +4,15 @@ import jakarta.validation.Valid;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/finance")
@@ -25,11 +30,21 @@ public class ItemController {
         model.addAttribute("items", itemService.findAll());
         return "finance/index";
     }
+
+    @GetMapping("/date/{date}")
+    public String  getItemsByDate(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,Model model) {
+        model.addAttribute("items", itemService.getItemsByDate(date));
+
+        return "finance/showallbydate";
+    }
+
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("item", itemService.findOne(id));
         return "finance/show";
     }
+
+
 
     @GetMapping("/newproduct")
     public String newItem(@ModelAttribute("item") Item item) {

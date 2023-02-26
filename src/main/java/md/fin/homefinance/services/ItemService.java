@@ -4,9 +4,11 @@ import md.fin.homefinance.DTO.ItemDTO;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -27,14 +29,22 @@ public class ItemService {
     }
 
 
+
+
+
     public Item findOne(int id) {
         Optional<Item> foundItem = itemRepository.findById(id);
         return foundItem.orElse(null);
     }
 
+    public List<Item> getItemsByDate(Date date) {
+        return itemRepository.findByDate(date);
+    }
+
+
     @Transactional
     public void save(Item item) {
-    item.setCreatedAt(new Date());
+    item.setDate(new Date());
         itemRepository.save(item);
     }
 
