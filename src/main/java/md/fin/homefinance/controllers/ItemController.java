@@ -11,14 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/finance")
 public class ItemController {
     private final ItemService itemService;
+
 
     @Autowired
     public ItemController(ItemService itemService) {
@@ -57,6 +56,8 @@ public class ItemController {
         return "finance/newproduct";
     }
 
+
+
     @PostMapping()
     public String create(@ModelAttribute("item") @Valid Item item,
                          BindingResult bindingResult) {
@@ -94,4 +95,7 @@ public class ItemController {
         itemService.delete(id);
         return "redirect:/finance";
     }
+
+
+
 }

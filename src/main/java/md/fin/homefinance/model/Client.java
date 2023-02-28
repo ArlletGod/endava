@@ -23,6 +23,8 @@ public class Client {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(mappedBy = "ownClient")
     private List<Item> items;
@@ -37,6 +39,14 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {

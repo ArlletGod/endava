@@ -60,7 +60,9 @@ public class Item {
     }
 
     public int getSum() {
-        return sum;
+        int forPercentage = 100;
+        int discountnumber = getOwnClient().getDiscount();
+        return getCost()*getQuantity()-getCost()*getQuantity()*discountnumber/forPercentage;
     }
 
     public void setSum(int sum) {

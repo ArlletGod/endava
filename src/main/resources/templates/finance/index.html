@@ -80,7 +80,7 @@
         </td>
         <td>
             <div th:each="item: ${items}">
-                <div th:text="${item.getCost()*item.getQuantity()-item.getCost()*item.getQuantity()*item.getOwnClient().getDiscount()/100}">VALUE</div></div>
+                <div th:text="${item.getSum}">VALUE</div></div>
         </td>
         <td>
             <div th:each="item: ${items}">

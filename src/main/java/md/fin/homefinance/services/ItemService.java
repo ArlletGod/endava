@@ -1,5 +1,7 @@
 package md.fin.homefinance.services;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import md.fin.homefinance.model.Category;
 import md.fin.homefinance.model.Client;
 import md.fin.homefinance.model.Item;
@@ -24,6 +26,9 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     public List<Item> findAll() {
         return itemRepository.findAll();
     }
@@ -32,6 +37,11 @@ public class ItemService {
     public Item findOne(int id) {
         Optional<Item> foundItem = itemRepository.findById(id);
         return foundItem.orElse(null);
+    }
+
+    public Item getItemById(int id) throws Exception {
+        return itemRepository.findById(id)
+                .orElseThrow(() -> new Exception("Item with id " + id + " not found"));
     }
 
     public List<Item> getItemsByDate(Date date) {
@@ -55,11 +65,11 @@ public class ItemService {
         itemRepository.save(updatedItem);
     }
 
+
     @Transactional
     public void delete(int id) {
         itemRepository.deleteById(id);
     }
-
 
 
 }
