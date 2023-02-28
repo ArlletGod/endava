@@ -1,4 +1,4 @@
-package md.fin.homefinance.model;
+package md.fin.homefinance.model.enums;
 
 public enum Role {
     USER,

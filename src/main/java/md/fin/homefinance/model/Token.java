@@ -1,4 +1,4 @@
-package md.fin.homefinance.token;
+package md.fin.homefinance.model;
 
 
 import jakarta.persistence.Column;
@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import md.fin.homefinance.model.User;
+import md.fin.homefinance.model.enums.TokenType;
 
 @Data
 @Builder

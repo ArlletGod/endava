@@ -1,4 +1,4 @@
-package md.fin.homefinance.config;
+package md.fin.homefinance.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

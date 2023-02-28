@@ -1,14 +1,16 @@
-package md.fin.homefinance.auth;
+package md.fin.homefinance.services;
 
 
 import lombok.RequiredArgsConstructor;
-import md.fin.homefinance.config.JwtService;
-import md.fin.homefinance.model.Role;
+import md.fin.homefinance.auth.AuthenticationRequest;
+import md.fin.homefinance.auth.AuthenticationResponse;
+import md.fin.homefinance.auth.RegisterRequest;
+import md.fin.homefinance.model.enums.Role;
 import md.fin.homefinance.model.User;
 import md.fin.homefinance.repositories.UserRepository;
-import md.fin.homefinance.token.Token;
-import md.fin.homefinance.token.TokenRepository;
-import md.fin.homefinance.token.TokenType;
+import md.fin.homefinance.model.Token;
+import md.fin.homefinance.repositories.TokenRepository;
+import md.fin.homefinance.model.enums.TokenType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

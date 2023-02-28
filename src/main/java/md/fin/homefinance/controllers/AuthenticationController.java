@@ -1,6 +1,10 @@
-package md.fin.homefinance.auth;
+package md.fin.homefinance.controllers;
 
 import lombok.RequiredArgsConstructor;
+import md.fin.homefinance.auth.AuthenticationRequest;
+import md.fin.homefinance.auth.AuthenticationResponse;
+import md.fin.homefinance.services.AuthenticationService;
+import md.fin.homefinance.auth.RegisterRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
