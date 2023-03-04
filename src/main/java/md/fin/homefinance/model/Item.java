@@ -2,6 +2,7 @@ package md.fin.homefinance.model;
 
 
 import jakarta.persistence.*;
+import md.fin.homefinance.model.enums.Status;
 
 
 import java.util.Date;
@@ -19,7 +20,7 @@ public class Item {
     private String name;
 
     @Column(name = "cost")
-    private int cost;
+    private double cost;
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -37,13 +38,15 @@ public class Item {
     private int quantity;
 
     @Column(name = "sum")
-    private int sum;
+    private double sum;
+
+    private Status status;
 
     public Item() {
     }
 
 
-    public Item(int id, String name, int cost, int quantity, int sum) {
+    public Item(int id, String name, double cost, int quantity, double sum) {
         this.id = id;
         this.name = name;
         this.cost = cost;
@@ -59,13 +62,13 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public int getSum() {
-        int forPercentage = 100;
-        int discountnumber = getOwnClient().getDiscount();
+    public double getSum() {
+        double forPercentage = 100;
+        double discountnumber = getOwnClient().getDiscount();
         return getCost()*getQuantity()-getCost()*getQuantity()*discountnumber/forPercentage;
     }
 
-    public void setSum(int sum) {
+    public void setSum(double sum) {
         this.sum = sum;
     }
 
@@ -109,11 +112,11 @@ public class Item {
         this.name = name;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 }
