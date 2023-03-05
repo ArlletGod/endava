@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/finance")
@@ -25,9 +26,22 @@ public class ItemController {
     }
 
 
+
+
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("items", itemService.findAll());
+        model.addAttribute("list", itemService.findAll());
+        return "finance/index";
+    }
+
+    @RequestMapping(path = {"finance/","/search"})
+    public String home(Item item, Model model, String keyword) {
+        if(keyword!=null) {
+            List<Item> list = itemService.getByKeyword(keyword);
+            model.addAttribute("list", list);
+        }else {
+            List<Item> list = itemService.getAllShops();
+            model.addAttribute("list", list);}
         return "finance/index";
     }
 

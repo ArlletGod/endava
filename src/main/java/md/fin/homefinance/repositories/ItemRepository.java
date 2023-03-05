@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -21,6 +22,9 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
     List<Item> findByOwner(Category category);
     List<Item> findByOwnClient(Client client);
+
+    @Query(value = "select * from item i where i.name like %:keyword% ", nativeQuery = true)
+    List<Item> findByKeyword(@Param("keyword") String keyword);
 
 
 

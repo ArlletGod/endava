@@ -2,7 +2,8 @@ package md.fin.homefinance.model;
 
 
 import jakarta.persistence.*;
-import md.fin.homefinance.model.enums.Status;
+import md.fin.homefinance.model.enums.Typestatus;
+import org.hibernate.annotations.DynamicUpdate;
 
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "item")
+@DynamicUpdate
 public class Item {
     @Id
     @Column(name = "id")
@@ -40,18 +42,20 @@ public class Item {
     @Column(name = "sum")
     private double sum;
 
-    private Status status;
+@Enumerated(EnumType.ORDINAL)
+private Typestatus typestatus;
+
 
     public Item() {
     }
 
-
-    public Item(int id, String name, double cost, int quantity, double sum) {
-        this.id = id;
+    public Item( String name, double cost, int quantity, double sum) {
         this.name = name;
         this.cost = cost;
         this.quantity = quantity;
         this.sum = sum;
+
+
     }
 
     public int getQuantity() {
@@ -118,6 +122,14 @@ public class Item {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public Typestatus getTypestatus() {
+        return typestatus;
+    }
+
+    public void setTypestatus(Typestatus typestatus) {
+        this.typestatus = typestatus;
     }
 }
 

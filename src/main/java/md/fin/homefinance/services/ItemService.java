@@ -3,14 +3,12 @@ package md.fin.homefinance.services;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import md.fin.homefinance.model.Category;
-import md.fin.homefinance.model.Client;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -71,5 +69,16 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
 
+    public List<Item> getAllShops(){
+        List<Item> list =  (List<Item>)itemRepository.findAll();
+        return list;
+    }
+
+    /*
+     * TODO: Get Shop By keyword
+     */
+    public List<Item> getByKeyword(String keyword){
+        return itemRepository.findByKeyword(keyword);
+    }
 
 }

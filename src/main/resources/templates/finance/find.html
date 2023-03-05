@@ -9,17 +9,13 @@
     <title>SEARCH</title>
 </head>
 <body>
-<div class="container mt-5">
-    <h2 align="center">FINANCE.MD</h2>
-    <div align="center">
-        <a href="/finance">Home</a> |<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add
-        new category</a></div><br>
-    <form th:action="@{/finance/search}" method="get">
-        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by name" size="50" >
+< class="container mt-5">
+    <h2 align="center">Search in Thymeleaf Template</h2>
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name & Shop Type" size="50" >
         <button type="submit" class="btn btn-info" >Search</button>
-
-    </form><form th:action="@{/finance}" method="get">
-    <button type="submit" class="btn btn-info" >Reset</button></form>
+        <button type="submit" class="btn btn-info" >Reset</button>
+    </form>
     <table class="table table-bordered table-sm mt-2">
         <thead>
         <tr>
@@ -37,58 +33,63 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr >
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <div th:text="${item.getId()}">VALUE</div>
                 </div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <a th:href=" @{/finance/date/{date}(date=${item.getDate()})}" th:text="${item.getDate()}">Edit</a></div>
             </td>
 
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <div th:text="${item.getOwnClient()}">VALUE</div></div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <a th:href="@{/finance/{id}(id=${item.getId()})}" th:text="${item.getName()}">Username</a></div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <div th:text="${item.getCost()} + ' lei'">VALUE</div>
                 </div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <div th:text="${item.getQuantity()}">VALUE</div>
                 </div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <div th:text="${item.getOwnClient().getDiscount()}+ ' %'">VALUE</div></div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <div th:text="${item.getSum}">VALUE</div></div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <div th:text="${item.getTypestatus}">VALUE</div></div>
             </td>
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <a th:href=" @{/finance/category/{category}(category=${item.getOwner().getId()})}"
                        th:text="${item.getOwner()}">VALUE</a></div>
             </td>
-
             <td>
-                <div th:each="item: ${list}">
+                <div th:each="item: ${items}">
                     <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a> | <a
                         th:href="@{/finance/delete/{id}(id=${item.getId()})}" onclick="return confirm('Are you sure?')">Delete</a>
                 </div>
+            </td>
+
+</td>
+            <td>
+                <a th:href="@{/update/{id}(id=${l.id})}" ><i class="fa fa-edit" ></i></a>
+                <a th:href="@{/delete/{id}(id=${l.id})}" ><i class="fa fa-remove"></i></a>
             </td>
         </tr>
         </tbody>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finance</title>
+</head>
+<body>
+<style>
+    .tb {
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tb th, .tb td {
+        padding: 5px;
+        border: solid 1px #777;
+    }
+
+    .tb th {
+        background-color: lightblue;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<div class="center">
+    <a href="/finance">Home</a> |<a href="/finance/newproduct">Add new product</a> | <a href="/categories/newcategory">Add
+    new category</a></div>
+
+<form th:action="@{/search}" method="get">
+    <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name" size="50" >
+    <button type="submit" class="btn btn-info" >Search</button>
+    <button type="submit" class="btn btn-info" >Reset</button>
+</form>
+<table class="tb">
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Client</th>
+        <th>Product</th>
+        <th>Cost</th>
+        <th>Quantity</th>
+        <th>Discount</th>
+        <th>Sum</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Edit/Delete</th>
+    </tr>
+    <tr>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getId()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <a th:href=" @{/finance/date/{date}(date=${item.getDate()})}" th:text="${item.getDate()}">Edit</a></div>
+        </td>
+
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getOwnClient()}">VALUE</div></div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <a th:href="@{/finance/{id}(id=${item.getId()})}" th:text="${item.getName()}">Username</a></div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getCost()} + ' lei'">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getQuantity()}">VALUE</div>
+            </div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getOwnClient().getDiscount()}+ ' %'">VALUE</div></div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getSum}">VALUE</div></div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <div th:text="${item.getTypestatus}">VALUE</div></div>
+        </td>
+        <td>
+            <div th:each="item: ${items}">
+                <a th:href=" @{/finance/category/{category}(category=${item.getOwner().getId()})}"
+                   th:text="${item.getOwner()}">VALUE</a></div>
+        </td>
+            <td>
+            <div th:each="item: ${items}">
+                <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a> | <a
+                    th:href="@{/finance/delete/{id}(id=${item.getId()})}" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        </td>
+
+        </div></td>
+
+
+    </tr>
+
+</table>
+
+</div>
+</body>
+</html>
