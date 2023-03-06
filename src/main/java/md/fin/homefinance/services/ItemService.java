@@ -81,4 +81,17 @@ public class ItemService {
         return itemRepository.findByKeyword(keyword);
     }
 
+    public long getSumWithDiscount(){
+        return itemRepository.findListOfSumFieldsAndDiscount();
+    }
+
+
+    public long getTotalPrice() {
+        return itemRepository.getTotalPrice();
+    }
+
+public long getCount() {
+    long count = itemRepository.count();
+    return count;
+}
 }

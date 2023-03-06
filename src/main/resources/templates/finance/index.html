@@ -72,7 +72,7 @@
             </td>
             <td>
                 <div th:each="item: ${list}">
-                    <div th:text="${item.getSum}">VALUE</div></div>
+                    <div th:text="${item.getSum-((item.getSum*item.getOwnClient().getDiscount())/100)}">VALUE</div></div>
             </td>
             <td>
                 <div th:each="item: ${list}">
@@ -92,6 +92,23 @@
             </td>
         </tr>
         </tbody>
+    </table>
+    <br>
+
+    <table class="table table-bordered table-sm mt-2">
+        <tr>
+            <td>Count of orders</td>
+            <td>TOTAL</td>
+
+        </tr>
+        <tr>
+            <td><span th:text="${countItems}"></span></td>
+            <td>
+
+               <span th:text="${totalPrice}"></span>
+            </td>
+
+        </tr>
     </table>
 </div>
 </body>

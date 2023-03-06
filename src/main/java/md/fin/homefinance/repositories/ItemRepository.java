@@ -6,6 +6,7 @@ import md.fin.homefinance.model.Item;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,16 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
     @Query(value = "select * from item i where i.name like %:keyword% ", nativeQuery = true)
     List<Item> findByKeyword(@Param("keyword") String keyword);
+
+
+
+    @Query(value = "SELECT SUM(o.sum_field) FROM item o JOIN categories ON categories.id = item.category_id", nativeQuery = true)
+    long getTotalPrice();
+
+
+    @Query(value = "SELECT SUM(sum_field-(((o.cost*o.quantity)*ct.discount)/100)) FROM item o JOIN client ct ON o.client_id = ct.id", nativeQuery = true)
+    long findListOfSumFieldsAndDiscount();
+
 
 
 

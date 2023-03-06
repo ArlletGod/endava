@@ -31,6 +31,11 @@ public class ItemController {
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("list", itemService.findAll());
+        long totalPrice = itemService.getSumWithDiscount();
+        model.addAttribute("totalPrice", totalPrice);
+        long countItems = itemService.getCount();
+        model.addAttribute("countItems", countItems);
+
         return "finance/index";
     }
 
@@ -39,9 +44,15 @@ public class ItemController {
         if(keyword!=null) {
             List<Item> list = itemService.getByKeyword(keyword);
             model.addAttribute("list", list);
+            long totalPrice = itemService.getTotalPrice();
+            model.addAttribute("totalPrice", totalPrice);
+
         }else {
             List<Item> list = itemService.getAllShops();
-            model.addAttribute("list", list);}
+            model.addAttribute("list", list);
+            long totalPrice = itemService.getTotalPrice();
+            model.addAttribute("totalPrice", totalPrice);
+        }
         return "finance/index";
     }
 

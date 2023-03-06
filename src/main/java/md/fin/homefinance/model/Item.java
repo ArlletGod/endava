@@ -39,7 +39,7 @@ public class Item {
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "sum")
+    @Column(name = "sum_field")
     private double sum;
 
 @Enumerated(EnumType.ORDINAL)
@@ -67,9 +67,7 @@ private Typestatus typestatus;
     }
 
     public double getSum() {
-        double forPercentage = 100;
-        double discountnumber = getOwnClient().getDiscount();
-        return getCost()*getQuantity()-getCost()*getQuantity()*discountnumber/forPercentage;
+       return sum;
     }
 
     public void setSum(double sum) {
@@ -131,6 +129,8 @@ private Typestatus typestatus;
     public void setTypestatus(Typestatus typestatus) {
         this.typestatus = typestatus;
     }
+
+
 }
 
 
