@@ -3,6 +3,8 @@ package md.fin.homefinance.controllers;
 import jakarta.validation.Valid;
 import md.fin.homefinance.model.Category;
 import md.fin.homefinance.model.Item;
+import md.fin.homefinance.services.CategoryService;
+import md.fin.homefinance.services.ClientService;
 import md.fin.homefinance.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,12 +19,20 @@ import java.util.List;
 @Controller
 @RequestMapping("/finance")
 public class ItemController {
+    @Autowired
     private final ItemService itemService;
 
+    @Autowired
+    private final ClientService clientService;
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    private final CategoryService categoryService;
+
+
+    public ItemController(ItemService itemService, ClientService clientService, CategoryService categoryService) {
         this.itemService = itemService;
+        this.clientService = clientService;
+        this.categoryService = categoryService;
     }
 
 
@@ -77,7 +87,9 @@ public class ItemController {
     }
 
     @GetMapping("/newproduct")
-    public String newItem(@ModelAttribute("item") Item item) {
+    public String newItem(@ModelAttribute("item") Item item , Model model) {
+        model.addAttribute("list", clientService.findAll());
+        model.addAttribute("categoryList", categoryService.findAll());
         return "finance/newproduct";
     }
 

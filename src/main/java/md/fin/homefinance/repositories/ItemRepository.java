@@ -38,5 +38,10 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 
 
+    @Query(value = "select c.company_name from client c", nativeQuery = true)
+    List<Category> findAllCategoryName();
+
+
+
 
 }

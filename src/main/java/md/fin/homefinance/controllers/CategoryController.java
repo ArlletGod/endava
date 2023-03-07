@@ -31,6 +31,7 @@ public class CategoryController {
         return "category/index";
     }
 
+
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("category", categoryService.findOne(id));

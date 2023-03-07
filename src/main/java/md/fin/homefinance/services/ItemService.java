@@ -94,4 +94,8 @@ public long getCount() {
     long count = itemRepository.count();
     return count;
 }
+
+    public List<Category> getAllCategoriesName(){
+        return itemRepository.findAllCategoryName();
+    }
 }
