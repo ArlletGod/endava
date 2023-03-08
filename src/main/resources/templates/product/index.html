@@ -115,12 +115,6 @@ body {
                 >Clients</a>
                 <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
                     <li class="nav-item">
-                        <a class="nav-link" href="/clients">
-                            <span class="nav-link-text">Show clients</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link" href="/clients/newclient">
                             <span class="nav-link-text">New Client</span>
                         </a>
@@ -133,25 +127,18 @@ body {
                         href="/categories"
                         id="hasSubItems"
                         data-toggle="collapse"
-                        data-target="#collapseSubItems3"
-                        aria-controls="collapseSubItems3"
+                        data-target="#collapseSubItems2"
+                        aria-controls="collapseSubItems2"
                         aria-expanded="false"
                 >Categories</a>
-                <ul class="nav-second-level collapse" id="collapseSubItems3" data-parent="#navAccordion">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/categories">
-                            <span class="nav-link-text">Show Categories</span>
-                        </a>
-                    </li>
+                <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
                     <li class="nav-item">
                         <a class="nav-link" href="/categories/newcategory">
-                            <span class="nav-link-text">Create Category</span>
+                            <span class="nav-link-text">New Category</span>
                         </a>
-                    </li>
+
                 </ul>
             </li>
-
-
             <li class="nav-item">
                 <a
                         class="nav-link nav-link-collapse"
@@ -163,16 +150,9 @@ body {
                         aria-expanded="false"
                 >Products</a>
                 <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/products">
-                            <span class="nav-link-text">Show Products</span>
-                        </a>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="/products/newproduct">
-                            <span class="nav-link-text">New Product</span>
+                            <span class="nav-link-text">New product</span>
                         </a>
                     </li>
 
@@ -183,113 +163,50 @@ body {
                 <a class="nav-link" href="#">Settings</a>
             </li>
         </ul>
-        <form th:action="@{/finance/search}" method="get" class="form-inline ml-auto mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" name="keyword" th:value="${keyword}"  placeholder="Search"  aria-label="Search" >
-            <button type="submit" class="btn btn-outline-success my-2 my-sm-0" >Search</button>
+        <form class="form-inline ml-auto mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-
-
     </div>
 </nav>
 
 <main class="content-wrapper">
     <div class="container-fluid">
 
-        <a class="btn btn-primary" href="/finance/newproduct" role="button">Add a purchase</a>
+************************
 
         <table class="table table-bordered table-sm mt-2">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Client</th>
-                <th>Product</th>
-                <th>Cost</th>
-                <th>Quantity</th>
-                <th>Discount</th>
-                <th>Sum</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th>Edit/Delete</th>
+            <th>ID</th>
+            <th>Product name</th>
+            <th>Price</th>
+
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getId()}">VALUE</div>
+                    <div th:each="product: ${products}">
+                        <div th:text="${product.getId()}">VALUE</div>
                     </div>
                 </td>
                 <td>
-                    <div th:each="item: ${list}">
-                        <a th:href=" @{/finance/date/{date}(date=${item.getDate()})}" th:text="${item.getDate()}">Edit</a></div>
-                </td>
-
-                <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getOwnClient()}">VALUE</div></div>
-                </td>
-                <td>
-                    <div th:each="item: ${list}">
-                        <a th:href="@{/finance/{id}(id=${item.getId()})}" th:text="${item.getName()}">Username</a></div>
-                </td>
-                <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getCost()} + ' lei'">VALUE</div>
+                    <div th:each="product: ${products}">
+                        <div th:text="${product.getProductName()}">VALUE</div>
                     </div>
                 </td>
-                <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getQuantity()}">VALUE</div>
-                    </div>
-                </td>
-                <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getOwnClient().getDiscount()}+ ' %'">VALUE</div></div>
-                </td>
-                <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getSum-((item.getSum*item.getOwnClient().getDiscount())/100)}">VALUE</div></div>
-                </td>
-                <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getTypestatus}">VALUE</div></div>
-                </td>
-                <td>
-                                    <div th:each="item: ${list}">
-                                        <a th:href=" @{/finance/category/{category}(category=${item.getOwner().getId()})}"
-                                           th:text="${item.getOwner()}">VALUE</a></div>
-
-                </td>
 
                 <td>
-                    <div th:each="item: ${list}">
-                        <a th:href="@{/finance/{id}/edit(id=${item.getId()})}">Edit</a> | <a
-                            th:href="@{/finance/delete/{id}(id=${item.getId()})}" onclick="return confirm('Are you sure?')">Delete</a>
+                    <div th:each="product: ${products}">
+                        <div th:text="${product.getPrice()}">VALUE</div>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
-        <br>
 
-        <table class="table table-bordered table-sm mt-2">
-            <tr>
-                <td>Count of orders</td>
-                <td>TOTAL</td>
-
-            </tr>
-            <tr>
-                <td><span th:text="${countItems}"></span></td>
-                <td>
-
-                    <span th:text="${totalPrice}"></span>
-                </td>
-
-            </tr>
-        </table>
-
-
+************************************
 
     </div>
 </main>

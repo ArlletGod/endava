@@ -24,12 +24,11 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     List<Item> findByOwner(Category category);
     List<Item> findByOwnClient(Client client);
 
-    @Query(value = "select * from item i where i.name like %:keyword% ", nativeQuery = true)
-    List<Item> findByKeyword(@Param("keyword") String keyword);
 
 
 
-    @Query(value = "SELECT SUM(o.sum_field) FROM item o JOIN categories ON categories.id = item.category_id", nativeQuery = true)
+
+    @Query(value = "SELECT SUM(o.sum_field) FROM item o JOIN categories ct ON ct.id = o.category_id", nativeQuery = true)
     long getTotalPrice();
 
 
@@ -41,7 +40,8 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query(value = "select c.company_name from client c", nativeQuery = true)
     List<Category> findAllCategoryName();
 
-
+    @Query(value = "select * from item i where i.name like %:keyword% ", nativeQuery = true)
+    List<Item> findByKeyword(@Param("keyword") String keyword);
 
 
 }

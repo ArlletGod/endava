@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 @DynamicUpdate
 public class Product {
 
@@ -17,6 +17,9 @@ public class Product {
     private String productName;
     @Column(name = "product_price")
     private int price;
+
+    public Product() {
+    }
 
     public Product(int id, String productName, int price) {
         this.id = id;
