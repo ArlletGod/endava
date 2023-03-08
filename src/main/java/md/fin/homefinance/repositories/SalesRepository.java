@@ -18,7 +18,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface ItemRepository extends JpaRepository<Item, Integer> {
+public interface SalesRepository extends JpaRepository<Item, Integer> {
     List<Item> findByDate(Date date);
 
     List<Item> findByOwner(Category category);

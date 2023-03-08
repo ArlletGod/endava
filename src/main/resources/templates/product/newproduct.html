@@ -197,15 +197,25 @@ body {
 
 
 
-        <p th:text="${item.getName()}">VALUE</p>
-        <p th:text="${'Description : ' + item.getDescription()}">VALUE</p>
-        <p th:text="${item.getId()}">VALUE</p>
-        <a th:href="@{/categpry/{id}/edit(id=${item.getId()})}">Edit</a>
 
-        <form th:method="DELETE" th:action="@{/cotegory/{id}(id=${item.getId()})}">
-            <input type="submit" value="Delete"/>
+
+        <form th:method="POST" th:action="@{/products}" th:object="${product}">
+
+
+            <label for="productName">Enter name: </label>
+            <input type="text" th:field="*{productName}" id="productName"/>
+            <div style="color:red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">productName Error</div>
+
+            <br/> <br/>
+
+            <label for="price">Price: </label>
+            <input type="text" th:field="*{price}" id="price"/>
+<br/>
+
+
+
+            <input type="submit" value="Create!"/>
         </form>
-
 
     </div>
 </main>

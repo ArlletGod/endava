@@ -1,6 +1,7 @@
 package md.fin.homefinance.services;
 
 
+import md.fin.homefinance.model.Client;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.model.Product;
 import md.fin.homefinance.repositories.ProductRepository;
@@ -36,5 +37,10 @@ public class ProductService {
     public Product getItemById(int id) throws Exception {
         return productRepository.findById(id)
                 .orElseThrow(() -> new Exception("Product with id " + id + " not found"));
+    }
+
+    @Transactional
+    public void save(Product product) {
+        productRepository.save(product);
     }
 }

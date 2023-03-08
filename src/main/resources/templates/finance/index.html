@@ -231,11 +231,11 @@ body {
                 </td>
                 <td>
                     <div th:each="item: ${list}">
-                        <a th:href="@{/finance/{id}(id=${item.getId()})}" th:text="${item.getName()}">Username</a></div>
+                        <div  th:text="${item.getProduct()}">Username</div></div>
                 </td>
                 <td>
                     <div th:each="item: ${list}">
-                        <div th:text="${item.getCost()} + ' lei'">VALUE</div>
+                        <div th:text="${item.getProduct().getPrice()} + ' lei'">VALUE</div>
                     </div>
                 </td>
                 <td>
@@ -249,7 +249,7 @@ body {
                 </td>
                 <td>
                     <div th:each="item: ${list}">
-                        <div th:text="${item.getSum-((item.getSum*item.getOwnClient().getDiscount())/100)}">VALUE</div></div>
+                        <div th:text="${item.getSum()}">VALUE</div></div>
                 </td>
                 <td>
                     <div th:each="item: ${list}">

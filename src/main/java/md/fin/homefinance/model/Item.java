@@ -32,6 +32,12 @@ public class Item {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client ownClient;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
+
+
+
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
     private Date date;
@@ -41,6 +47,8 @@ public class Item {
 
     @Column(name = "sum_field")
     private double sum;
+
+
 
 @Enumerated(EnumType.ORDINAL)
 private Typestatus typestatus;
@@ -58,6 +66,14 @@ private Typestatus typestatus;
 
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -67,7 +83,7 @@ private Typestatus typestatus;
     }
 
     public double getSum() {
-       return sum;
+       return (getProduct().getPrice()*getQuantity())-((getProduct().getPrice()*getQuantity())*getOwnClient().getDiscount()/100);
     }
 
     public void setSum(double sum) {

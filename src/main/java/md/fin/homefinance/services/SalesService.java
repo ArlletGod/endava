@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import md.fin.homefinance.model.Category;
 import md.fin.homefinance.model.Item;
-import md.fin.homefinance.repositories.ItemRepository;
+import md.fin.homefinance.repositories.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,62 +15,62 @@ import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
-public class ItemService {
+public class SalesService {
 
-    private final ItemRepository itemRepository;
+    private final SalesRepository salesRepository;
 
     @Autowired
-    public ItemService(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
+    public SalesService(SalesRepository salesRepository) {
+        this.salesRepository = salesRepository;
     }
 
     @PersistenceContext
     private EntityManager entityManager;
 
     public List<Item> findAll() {
-        return itemRepository.findAll();
+        return salesRepository.findAll();
     }
 
 
     public Item findOne(int id) {
-        Optional<Item> foundItem = itemRepository.findById(id);
+        Optional<Item> foundItem = salesRepository.findById(id);
         return foundItem.orElse(null);
     }
 
     public Item getItemById(int id) throws Exception {
-        return itemRepository.findById(id)
+        return salesRepository.findById(id)
                 .orElseThrow(() -> new Exception("Item with id " + id + " not found"));
     }
 
     public List<Item> getItemsByDate(Date date) {
-        return itemRepository.findByDate(date);
+        return salesRepository.findByDate(date);
     }
 
     public List<Item> getItemsByOwner(Category category) {
-        return itemRepository.findByOwner(category);
+        return salesRepository.findByOwner(category);
     }
 
 
     @Transactional
     public void save(Item item) {
         item.setDate(new Date());
-        itemRepository.save(item);
+        salesRepository.save(item);
     }
 
     @Transactional
     public void update(int id, Item updatedItem) {
         updatedItem.setId(id);
-        itemRepository.save(updatedItem);
+        salesRepository.save(updatedItem);
     }
 
 
     @Transactional
     public void delete(int id) {
-        itemRepository.deleteById(id);
+        salesRepository.deleteById(id);
     }
 
     public List<Item> getAllShops(){
-        List<Item> list =  (List<Item>)itemRepository.findAll();
+        List<Item> list =  (List<Item>) salesRepository.findAll();
         return list;
     }
 
@@ -78,24 +78,24 @@ public class ItemService {
      * TODO: Get Shop By keyword
      */
     public List<Item> getByKeyword(String keyword){
-        return itemRepository.findByKeyword(keyword);
+        return salesRepository.findByKeyword(keyword);
     }
 
     public long getSumWithDiscount(){
-        return itemRepository.findListOfSumFieldsAndDiscount();
+        return salesRepository.findListOfSumFieldsAndDiscount();
     }
 
 
     public long getTotalPrice() {
-        return itemRepository.getTotalPrice();
+        return salesRepository.getTotalPrice();
     }
 
 public long getCount() {
-    long count = itemRepository.count();
+    long count = salesRepository.count();
     return count;
 }
 
     public List<Category> getAllCategoriesName(){
-        return itemRepository.findAllCategoryName();
+        return salesRepository.findAllCategoryName();
     }
 }

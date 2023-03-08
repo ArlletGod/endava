@@ -173,12 +173,11 @@ body {
 <main class="content-wrapper">
     <div class="container-fluid">
 
-************************
-
+        <button type="button" class="btn btn-dark btn-sm" href="/products/new">New product</button>
         <table class="table table-bordered table-sm mt-2">
             <thead>
             <tr>
-            <th>ID</th>
+
             <th>Product name</th>
             <th>Price</th>
 
@@ -186,11 +185,6 @@ body {
             </thead>
             <tbody>
             <tr>
-                <td>
-                    <div th:each="product: ${products}">
-                        <div th:text="${product.getId()}">VALUE</div>
-                    </div>
-                </td>
                 <td>
                     <div th:each="product: ${products}">
                         <div th:text="${product.getProductName()}">VALUE</div>
@@ -206,7 +200,7 @@ body {
             </tbody>
         </table>
 
-************************************
+
 
     </div>
 </main>

@@ -4,6 +4,8 @@ package md.fin.homefinance.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.List;
+
 @Entity
 @Table(name = "product")
 @DynamicUpdate
@@ -18,6 +20,11 @@ public class Product {
     @Column(name = "product_price")
     private int price;
 
+    @OneToMany(mappedBy = "product")
+    private List<Item> items;
+
+
+
     public Product() {
     }
 
@@ -26,6 +33,16 @@ public class Product {
         this.productName = productName;
         this.price = price;
     }
+
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
 
     public int getId() {
         return id;
@@ -49,5 +66,10 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return  productName ;
     }
 }
