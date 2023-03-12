@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{fragments/menu ::#nav-menu}"></div>
+<table border ="1">
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+    </tr>
+    <tr th:each="user: ${users}">
+        <td th:text ="${user.username}">testName</td>
+        <td th:text ="${user.email}">testEmail</td>
+    </tr>
+</table>
+<a th:href="@{/users/new}">Add new</a>
+</body>
+</html>

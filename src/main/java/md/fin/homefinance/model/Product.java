@@ -1,20 +1,27 @@
 package md.fin.homefinance.model;
 
+import javax.persistence.*;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "product")
-@DynamicUpdate
 public class Product {
-
+    private static final String SEQ_NAME = "category_seq";
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
+    @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME, allocationSize = 1)
+    private Long id;
     @Column(name = "product_name")
     private String productName;
     @Column(name = "product_price")
@@ -24,52 +31,4 @@ public class Product {
     private List<Item> items;
 
 
-
-    public Product() {
-    }
-
-    public Product(int id, String productName, int price) {
-        this.id = id;
-        this.productName = productName;
-        this.price = price;
-    }
-
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return  productName ;
-    }
 }

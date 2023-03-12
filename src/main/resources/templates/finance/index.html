@@ -248,8 +248,8 @@ body {
                         <div th:text="${item.getOwnClient().getDiscount()}+ ' %'">VALUE</div></div>
                 </td>
                 <td>
-                    <div th:each="item: ${list}">
-                        <div th:text="${item.getSum()}">VALUE</div></div>
+                    <div th:each="item: ${totalPrice}">
+                        <div>VALUE</div></div>
                 </td>
                 <td>
                     <div th:each="item: ${list}">

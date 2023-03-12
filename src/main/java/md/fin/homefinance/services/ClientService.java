@@ -1,6 +1,6 @@
 package md.fin.homefinance.services;
 
-import md.fin.homefinance.model.Category;
+
 import md.fin.homefinance.model.Client;
 import md.fin.homefinance.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Client findOne(int id) {
+    public Client findOne(Long id) {
         Optional<Client> foundItem = clientRepository.findById(id);
         return foundItem.orElse(null);
     }
@@ -36,13 +36,13 @@ public class ClientService {
     }
 
     @Transactional
-    public void update(int id, Client updatedClient) {
+    public void update(Long id, Client updatedClient) {
         updatedClient.setId(id);
         clientRepository.save(updatedClient);
     }
 
     @Transactional
-    public void delete(int id) {
+    public void delete(Long id) {
         clientRepository.deleteById(id);
     }
 }

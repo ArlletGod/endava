@@ -1,8 +1,7 @@
 package md.fin.homefinance.services;
 
 
-import md.fin.homefinance.model.Client;
-import md.fin.homefinance.model.Item;
+
 import md.fin.homefinance.model.Product;
 import md.fin.homefinance.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +28,12 @@ public class ProductService {
     }
 
 
-    public Product findOne(int id) {
+    public Product findOne(Long id) {
         Optional<Product> foundItem = productRepository.findById(id);
         return foundItem.orElse(null);
     }
 
-    public Product getItemById(int id) throws Exception {
+    public Product getItemById(Long id) throws Exception {
         return productRepository.findById(id)
                 .orElseThrow(() -> new Exception("Product with id " + id + " not found"));
     }

@@ -1,7 +1,6 @@
 package md.fin.homefinance.controllers;
 
-import jakarta.validation.Valid;
-import md.fin.homefinance.model.Client;
+
 import md.fin.homefinance.model.Product;
 import md.fin.homefinance.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -29,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String show(@PathVariable("id") Long id, Model model) {
         model.addAttribute("products", productService.findOne(id));
         return "product/show";
     }

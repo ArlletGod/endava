@@ -1,7 +1,7 @@
 package md.fin.homefinance.controllers;
 
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import md.fin.homefinance.model.Category;
 import md.fin.homefinance.model.Item;
 import md.fin.homefinance.services.CategoryService;
@@ -33,7 +33,7 @@ public class CategoryController {
 
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String show(@PathVariable("id") Long id, Model model) {
         model.addAttribute("category", categoryService.findOne(id));
         return "category/show";
     }
@@ -55,14 +55,14 @@ public class CategoryController {
 
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String edit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("category", categoryService.findOne(id));
         return "category/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("item") @Valid Category category, BindingResult bindingResult,
-                         @PathVariable("id") int id) {
+                         @PathVariable("id") Long id) {
         if (bindingResult.hasErrors())
             return "category/edit";
 
@@ -71,7 +71,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") Long id) {
         categoryService.delete(id);
         return "redirect:/category";
     }

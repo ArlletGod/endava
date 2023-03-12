@@ -1,6 +1,7 @@
 package md.fin.homefinance.controllers;
 
-import jakarta.validation.Valid;
+import javax.persistence.*;
+import javax.validation.Valid;
 
 import md.fin.homefinance.model.Client;
 import md.fin.homefinance.services.ClientService;
@@ -28,7 +29,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String show(@PathVariable("id") Long id, Model model) {
         model.addAttribute("client", clientService.findOne(id));
         return "client/show";
     }
@@ -50,14 +51,14 @@ public class ClientController {
 
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String edit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("client", clientService.findOne(id));
         return "client/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("item") @Valid Client client, BindingResult bindingResult,
-                         @PathVariable("id") int id) {
+                         @PathVariable("id") Long id) {
         if (bindingResult.hasErrors())
             return "client/edit";
 
@@ -66,7 +67,7 @@ public class ClientController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") Long id) {
         clientService.delete(id);
         return "redirect:/clients";
     }
